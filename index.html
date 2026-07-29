@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A professional school website project for St. Thomas Kavingoni Senior School">
+  <meta name="theme-color" content="#0b3d91">
+  <title>St. Thomas Kavingoni Senior School | Education For a better life</title>
+
+  <link rel="icon" type="image/png" href="images/logo.png">
+<style>
+    /* =========================================================
+       ST. THOMAS KAVINGONI SENIOR SCHOOL
+       Professional ICT Web Development
+       ========================================================= */
+
+    :root {
+      --primary: #0b3d91;
+      --primary-dark: #072b68;
+      --secondary: #f4b400;
+      --accent: #00a6a6;
+      --ink: #172033;
+      --muted: #64748b;
+      --light: #f6f8fc;
+      --white: #ffffff;
+      --border: #e5eaf2;
+      --shadow: 0 18px 45px rgba(15, 34, 67, .10);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    .container { width: min(92%, var(--max)); margin-inline: auto; }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,.9);
+      font-size: .85rem;
+    }
+
+    .topbar-inner {
+      min-height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .topbar span { display: inline-flex; align-items: center; gap: 7px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .brand-text strong {
+      display: block;
+      color: var(--primary);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: .95rem;
+      line-height: 1.25;
+    }
+
+    .brand-text small { color: var(--muted); font-size: .72rem; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 9px;
+      color: #26344d;
+      font-size: .9rem;
+      font-weight: 600;
+      transition: .25s ease;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+      background: #eef4ff;
+    }
+
+    .nav-cta {
+      background: var(--primary) !important;
+      color: var(--white) !important;
+      padding-inline: 17px !important;
+    }
+
+    .nav-cta:hover { background: var(--primary-dark) !important; }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: grid;
+      place-items: center;
+      position: relative;
+      color: var(--white);
+      background:
+        linear-gradient(110deg, rgba(5,28,70,.88), rgba(11,61,145,.55)),
+        url("images/hero.jpg") center/cover no-repeat;
+    }
+
+    .hero-content {
+      width: min(92%, 900px);
+      padding: 90px 0;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 99px;
+      background: rgba(255,255,255,.10);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .75rem;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 30px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,.9);
+    }
+
+    .hero-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform .25s, box-shadow .25s, background .25s;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(0,0,0,.18); }
+    .btn-primary { background: var(--secondary); color: #182100; }
+    .btn-light { background: rgba(255,255,255,.13); color: var(--white); border: 1px solid rgba(255,255,255,.4); }
+
+    section { padding: 88px 0; }
+
+    .section-head { max-width: 720px; margin: 0 auto 48px; text-align: center; }
+    .section-kicker {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: .76rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .section-head p, .lead { color: var(--muted); }
+
+    .welcome { background: var(--light); }
+
+    .welcome-grid, .message-grid, .contact-grid, .location-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .welcome-image img, .message-image img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .welcome-copy h2 { font-family: Arial, Helvetica, sans-serif; font-size: 2.1rem; margin-bottom: 18px; }
+    .welcome-copy p { color: var(--muted); margin-bottom: 18px; }
+
+    .feature-grid, .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card, .info-card, .person-card, .activity-card, .gallery-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(15,34,67,.05);
+      transition: .3s ease;
+    }
+
+    .feature-card:hover, .info-card:hover, .person-card:hover, .activity-card:hover, .gallery-card:hover {
+      transform: translateY(-7px);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card { padding: 28px 22px; }
+    .feature-icon {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      border-radius: 12px; background: #eef4ff; color: var(--primary);
+      font-size: 1.35rem; margin-bottom: 17px;
+    }
+
+    .feature-card h3, .info-card h3, .activity-card h3 { margin-bottom: 8px; font-size: 1.05rem; }
+    .feature-card p, .info-card p, .activity-card p { color: var(--muted); font-size: .92rem; }
+
+    .about { background: var(--white); }
+    .history { max-width: 900px; margin: auto; }
+    .history p { color: var(--muted); margin-bottom: 18px; }
+    .history strong { color: var(--primary); }
+
+    .pillars { background: var(--light); }
+    .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .pillar {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--white);
+      border: 1px solid var(--border);
+    }
+    .pillar h3 { color: var(--primary); margin-bottom: 9px; }
+    .pillar p { color: var(--muted); }
+
+    .academics { background: var(--white); }
+    .academic-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .info-card { padding: 28px; }
+    .info-card .number {
+      font-size: .78rem; color: var(--secondary); font-weight: 800;
+      letter-spacing: 1px; margin-bottom: 10px;
+    }
+
+    .message { background: var(--light); }
+    .message-copy h3 { font-family: Arial, Helvetica, sans-serif; font-size: 1.8rem; margin-bottom: 18px; }
+    .message-copy p { color: var(--muted); margin-bottom: 16px; }
+    .signature { margin-top: 22px; color: var(--primary); font-weight: 800; }
+
+    .departments { background: var(--white); }
+    .department-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .department-card img { width: 100%; height: 190px; object-fit: cover; }
+    .department-card .content { padding: 22px; }
+    .department-card h3 { color: var(--primary); margin-bottom: 8px; }
+    .department-card p { color: var(--muted); font-size: .92rem; }
+
+    .teachers { background: var(--light); }
+    .teacher-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .person-card { text-align: center; }
+    .person-card img { width: 100%; height: 245px; object-fit: cover; }
+    .person-card .person-info { padding: 17px; }
+    .person-card h3 { font-size: 1rem; }
+    .person-card p { color: var(--muted); font-size: .86rem; }
+
+    .student-life { background: var(--white); }
+    .activity-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .activity-card { padding: 25px; }
+    .activity-icon { font-size: 1.8rem; margin-bottom: 10px; }
+
+    .gallery { background: var(--light); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .gallery-card { position: relative; }
+    .gallery-card img { width: 100%; height: 210px; object-fit: cover; transition: .4s; }
+    .gallery-card:hover img { transform: scale(1.04); }
+    .gallery-card figcaption { padding: 14px 16px; font-weight: 700; font-size: .9rem; }
+
+    .contact { background: var(--white); }
+    .contact-grid { align-items: start; }
+    .contact-list { display: grid; gap: 16px; margin-top: 25px; }
+    .contact-item {
+      display: flex; gap: 15px; align-items: flex-start;
+      padding: 18px; background: var(--light); border-radius: 12px;
+    }
+    .contact-item b { display: block; color: var(--ink); }
+    .contact-item span { color: var(--muted); font-size: .9rem; }
+
+    form {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    label { display: block; margin: 0 0 6px; font-size: .82rem; font-weight: 700; }
+    input, textarea {
+      width: 100%; border: 1px solid var(--border); border-radius: 9px;
+      padding: 13px 14px; outline: none; background: #fbfcfe;
+      transition: border .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(11,61,145,.10); }
+    .field { margin-bottom: 15px; }
+    form .btn { width: 100%; background: var(--primary); color: var(--white); }
+
+    .location { background: var(--light); }
+    .live-map-card {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .live-map-card iframe {
+      width: 100%;
+      height: 330px;
+      display: block;
+      border: 0;
+    }
+    .map-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 22px;
+    }
+    .map-caption h3 {
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-size: 1.05rem;
+    }
+    .map-caption p {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.5;
+    }
+    .map-button {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 9px;
+      background: var(--primary);
+      color: var(--white);
+      font-size: .82rem;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+    .map-button:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    footer { background: #071a3a; color: rgba(255,255,255,.82); padding: 65px 0 25px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
+    footer h3 { color: var(--white); margin-bottom: 14px; }
+    footer p, footer a { color: rgba(255,255,255,.68); font-size: .9rem; }
+    footer a:hover { color: var(--secondary); }
+    .footer-links { list-style: none; display: grid; gap: 8px; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.12);
+      margin-top: 45px; padding-top: 22px;
+      display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;
+      font-size: .82rem;
+    }
+
+    .back-top {
+      position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px;
+      border-radius: 50%; display: grid; place-items: center;
+      background: var(--secondary); color: #1c2500; font-weight: 900;
+      box-shadow: var(--shadow); opacity: 0; pointer-events: none; transition: .25s;
+    }
+    .back-top.show { opacity: 1; pointer-events: auto; }
+
+
+    /* =========================
+       GROUPED DROPDOWN MENUS
+       ========================= */
+    .nav-links > li {
+      position: relative;
+    }
+
+    .nav-links .has-dropdown > a span {
+      font-size: .75rem;
+      margin-left: 4px;
+      transition: transform .25s ease;
+    }
+
+    .nav-links .has-dropdown:hover > a span,
+    .nav-links .has-dropdown:focus-within > a span {
+      transform: rotate(180deg);
+      display: inline-block;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 225px;
+      padding: 8px;
+      margin: 0;
+      list-style: none;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s;
+      z-index: 1100;
+    }
+
+    .has-dropdown:hover .dropdown-menu,
+    .has-dropdown:focus-within .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu li {
+      width: 100%;
+    }
+
+    .dropdown-menu a {
+      padding: 10px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      font-size: .86rem;
+    }
+
+    .dropdown-menu a:hover {
+      background: #eef4ff;
+      color: var(--primary);
+    }
+
+    @media (max-width: 850px) {
+      .dropdown-menu {
+        position: static;
+        min-width: 0;
+        width: 100%;
+        padding: 0 0 5px 12px;
+        border: 0;
+        box-shadow: none;
+        border-radius: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        display: none;
+        background: transparent;
+      }
+
+      .has-dropdown.open .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu a {
+        background: #f6f8fc;
+        margin: 2px 0;
+      }
+
+      .nav-links .has-dropdown > a span {
+        float: right;
+      }
+    }
+
+    @media (max-width: 1050px) {
+      .nav-links { gap: 0; }
+      .nav-links a { padding-inline: 8px; }
+      .feature-grid, .teacher-grid, .activity-grid, .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+    @media (max-width: 850px) {
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: absolute; top: 76px; left: 0; right: 0;
+        display: none; flex-direction: column; align-items: stretch;
+        padding: 12px 4%; background: var(--white); border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px; }
+      .welcome-grid, .message-grid, .contact-grid, .location-grid { grid-template-columns: 1fr; }
+      .pillar-grid, .academic-grid, .department-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 65px 0; }
+      .topbar-inner { justify-content: center; text-align: center; }
+      .topbar-inner span:last-child { display: none; }
+      .brand-text strong { font-size: .82rem; }
+      .brand-text small { font-size: .65rem; }
+      .hero { min-height: 72vh; }
+      .hero-content { padding: 70px 0; }
+      .hero-actions .btn { width: 100%; }
+      .feature-grid, .pillar-grid, .academic-grid, .department-grid,
+      .teacher-grid, .activity-grid, .gallery-grid, .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .gallery-card img { height: 230px; }
+      .map-caption { flex-direction: column; align-items: stretch; }
+      .map-button { width: 100%; }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span> Kavingoni, Makueni County, Kenya</span>
+      <span> Education For a Better Life</span>
+    </div>
+  </div>
+
+  <header>
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <img src="school-logo.png" alt="St. Thomas Kavingoni School logo">
+        <span class="brand-text">
+          <strong>ST. THOMAS KAVINGONI SENIOR SCHOOL</strong>
+          <small>P.O. Box 73-90302 Makueni</small>
+        </span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+
+      <ul class="nav-links">
+        <li><a class="active" href="#home">Home</a></li>
+
+        <li class="has-dropdown">
+          <a href="#about">About Us <span>▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#about">Welcome</a></li>
+            <li><a href="#history">Our History</a></li>
+            <li><a href="#principal">Principal's Message</a></li>
+            <li><a href="#pillars">Vision, Mission & Values</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#academics">Academics <span>▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#academics">Learning Pathways</a></li>
+            <li><a href="#departments">Academic Departments</a></li>
+            <li><a href="#teachers">Our Teachers</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#student-life">Student Life <span>▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#student-life">Sports & Games</a></li>
+            <li><a href="#student-life">Clubs & Societies</a></li>
+            <li><a href="#student-life">ICT & Innovation</a></li>
+            <li><a href="#gallery">School Gallery</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#contact">Contact <span>▾</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#location">Find Us</a></li>
+          </ul>
+        </li>
+
+        <li><a class="nav-cta" href="#contact">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="eyebrow">Welcome to St Thomas </span>
+        <h1>Shaping Bright Minds for a Better Tomorrow</h1>
+        <p>At St. Thomas Kavingoni Senior School, we nurture responsible, creative and confident learners through academic excellence, discipline, innovation and holistic development.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#about">Explore Our School</a>
+          <a class="btn btn-light" href="#contact">Admissions</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="welcome" id="about">
+      <div class="container welcome-grid">
+        <div class="welcome-image">
+          <img src="school gate.png" alt="Main gate of St. Thomas Kavingoni School" loading="lazy">
+        </div>
+        <div class="welcome-copy">
+          <div class="section-kicker">Who we are</div>
+          <h2>Welcome to St. Thomas Kavingoni</h2>
+          <p>St. Thomas Kavingoni School is committed to providing quality education in a safe, supportive and inspiring environment where every learner is encouraged to discover their abilities and reach their full potential.</p>
+          <p>Our approach combines strong academics with leadership, technology, sports, creativity, spiritual growth and community responsibility.</p>
+          <a class="btn btn-primary" href="#history">Discover Our Story</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Our foundation</div>
+          <h2 class="section-title">What Makes Us Different</h2>
+          <p>We build a learning environment where knowledge is strengthened by character, creativity and practical skills.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Academic Excellence</h3><p>Focused teaching and learning that equips students with knowledge and strong problem-solving skills.</p></article>
+          <article class="feature-card"><h3>Innovation & ICT</h3><p>Encouraging digital literacy, coding, creativity and technology-driven solutions for real-world challenges.</p></article>
+          <article class="feature-card"><h3>Talent Development</h3><p>Sports, clubs, music and creative activities help learners discover and develop their unique talents.</p></article>
+          <article class="feature-card"><h3>Character & Leadership</h3><p>We nurture disciplined, responsible and confident young people who can positively influence society.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="history">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Our journey</div>
+          <h2 class="section-title">A Proud History of Growth</h2>
+        </div>
+        <div class="history">
+          <p><strong>St. Thomas Kavingoni School</strong> was established in <strong>1983</strong> with the vision of providing quality, holistic and affordable education to learners from Kavingoni and surrounding communities. What began as a modest institution with a small enrolment has grown into a respected centre of learning known for academic excellence, discipline, integrity and character development.</p>
+          <p>Over the years, the school has grown through the commitment of dedicated teachers, supportive parents, the Board of Management, alumni, sponsors and the wider community. Their collective contribution has strengthened infrastructure, academic programmes and the learning environment.</p>
+          <p>Today, our educational experience combines academic learning with leadership development, spiritual growth, sports, co-curricular activities, environmental conservation, innovation and digital literacy. Learners are encouraged to become confident, responsible and compassionate citizens prepared for the modern world.</p>
+          <p>Guided by our motto, <strong>“Knowledge • Discipline • Excellence,”</strong> we continue to nurture learners who can positively impact their communities, Kenya and the world.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Our direction</div>
+          <h2 class="section-title">Vision, Mission & Core Values</h2>
+        </div>
+        <div class="pillar-grid">
+          <article class="pillar"><h3>Our Vision</h3><p>To be a centre of excellence in education by nurturing responsible, creative and successful learners.</p></article>
+          <article class="pillar"><h3>Our Mission</h3><p>To provide quality education through effective teaching, discipline, innovation and development of talents.</p></article>
+          <article class="pillar"><h3>Our Values</h3><p>Discipline, excellence, integrity and teamwork guide how we learn, lead and serve.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="academics" id="academics">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Learning pathways</div>
+          <h2 class="section-title">Education for the Whole Learner</h2>
+          <p>Our programmes develop knowledge, competencies, creativity and the confidence to face future opportunities.</p>
+        </div>
+        <div class="academic-grid">
+          <article class="info-card"><h3>CBC & Competencies</h3><p>We promote creativity, communication, collaboration, critical thinking, problem-solving and digital literacy.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="message" id="principal">
+      <div class="container message-grid">
+        <div class="message-image">
+          <img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\principal.png" alt="Mr. Muange, Principal of St. Thomas Kavingoni School" loading="lazy">
+        </div>
+        <div class="message-copy">
+          <div class="section-kicker">Leadership message</div>
+          <h3>Message from the Principal</h3>
+          <p>Dear Parents, Students, Staff, Alumni and Visitors,</p>
+          <p>It is my great pleasure to welcome you to the official website of <strong>St. Thomas Kavingoni School</strong>. We are committed to providing quality education in an environment that promotes academic excellence, discipline, integrity and innovation.</p>
+          <p>We believe every learner has unique abilities and unlimited potential. Through dedicated teaching, leadership opportunities, sports, technology, creativity, environmental conservation and community service, we strive to develop well-rounded young people prepared for a dynamic world.</p>
+          <p>We warmly welcome you to be part of our school community as we continue to inspire, nurture and empower every learner to achieve their dreams.</p>
+          <div class="signature">Mr. Muange<br><span>Principal, St. Thomas Kavingoni School</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="departments" id="departments">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Academic excellence</div>
+          <h2 class="section-title">Our Academic Departments</h2>
+          <p>Dedicated departments work together to give learners a broad and practical educational experience.</p>
+        </div>
+        <div class="department-grid">
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.50.jpeg" alt="Science Department" loading="lazy"><div class="content"><h3>Science</h3><p>Biology, Chemistry and Physics develop practical laboratory skills, critical thinking, research and scientific innovation.</p></div></article>
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.48 (3).jpeg" alt="Mathematics Department" loading="lazy"><div class="content"><h3>Mathematics</h3><p>We develop analytical thinking and problem-solving abilities through quality instruction and practical applications.</p></div></article>
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\magazine camara\IMG-20250623-WA0049.jpg" alt="Languages Department" loading="lazy"><div class="content"><h3>Languages</h3><p>English, Kiswahili and Literature strengthen communication, reading, writing and self-expression.</p></div></article>
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\KAVINGONI\technical dept.jpg" alt="Humanities Department" loading="lazy"><div class="content"><h3>Humanities</h3><p>History, Geography and CRE help learners understand society, citizenship, leadership and human values.</p></div></article>
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\KAVINGONI\ICT CLUB.jpg" alt="Technical Department" loading="lazy"><div class="content"><h3>Technical & ICT</h3><p>Practical subjects and ICT equip learners with digital skills, creativity and competencies for the modern economy.</p></div></article>
+          <article class="department-card info-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\magazine camara\IMG-20250623-WA0017.jpg" alt="Sports Department" loading="lazy"><div class="content"><h3>Sports</h3><p>Football, volleyball, athletics, basketball and other games promote teamwork, fitness, discipline and resilience.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="teachers" id="teachers">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Our team</div>
+          <h2 class="section-title">Meet Our Teachers</h2>
+          <p>Committed educators who guide, mentor and inspire learners to pursue excellence.</p>
+        </div>
+        <div class="teacher-grid">
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\principal.png" alt="Mr. Muange Nicholas - Principal" loading="lazy"><div class="person-info"><h3>Mr. Muange</h3><p>Mathematics & Geography</p><p>Principal</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (3).jpeg" alt="Mr. Mainga Abednego - Deputy principal" loading="lazy"><div class="person-info"><h3>Mr. Mainga Abednego </h3><p>Biology & Chemistry</p><p> Deputy Principal</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\magazine camara\IMG-20250623-WA0022.jpg" alt="Mr. Kithuka - History" loading="lazy"><div class="person-info"><h3>Mr. Kithuka</h3><p>History & CRE </p><p>Senior Teacher</p></div></article>		 
+		  <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.48.jpeg" alt="Mr. Nzioki Daniel- Chemistry" loading="lazy"><div class="person-info"><h3>Mr. Nzioki</h3><p>Chemistry & Physics </p><p>DOS</p></div></article>
+		  <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mrs. Mwewa Ruth- English" loading="lazy"><div class="person-info"><h3>Md. Mwewa</h3><p>English & Literature</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Ms. Wambua Ann - Kiswahili" loading="lazy"><div class="person-info"><h3>Md. Wambua</h3><p>Kiswahili & Geography</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mr. Mwaniki Joseph-- Science" loading="lazy"><div class="person-info"><h3>Mr. Mwaniki</h3><p>Biology & Agriculture</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.50 (1).jpeg" alt="Mr. Muli Matthew - History" loading="lazy"><div class="person-info"><h3>Mr. MUli</h3><p>History & Kiswahili </p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\magazine camara\IMG-20250623-WA0015.jpg" alt="Ms. Ruth Mutisya - CRE" loading="lazy"><div class="person-info"><h3>Md. Ruth</h3><p>CRE & Kiswahili</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.48 (1).jpeg" alt="Ms. Miriam Mulwa - Agriculture" loading="lazy"><div class="person-info"><h3>Md. Miriam</h3><p>Agriculture & Biology</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Desktop\GITHUB PROJECTS\KAVINGONI WEBSITE\School photos\profile.png" alt="Mr. Njeru Justus - Computer Studies" loading="lazy"><div class="person-info"><h3>Mr. Njeru</h3><p>Computer Studies & Mathematics</p><p>ICT </p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mr. Musoi - Music" loading="lazy"><div class="person-info"><h3>Mr. Musoi</h3><p>History & Kiswahili</p><p>Music & Dance</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mr. Ngunga - Art" loading="lazy"><div class="person-info"><h3>Mr. Ngunga</h3><p>Mathematics & Physics</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mr. Musila - Sports" loading="lazy"><div class="person-info"><h3>Mr. Musila</h3><p>Kiswahili & Geography</p><p>Sports</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49.jpeg" alt="Md. Katumo - English" loading="lazy"><div class="person-info"><h3>Md. Katumo</h3><p>English & Literature</p></div></article>
+          <article class="person-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 16.23.49 (1).jpeg" alt="Mr. Mwangangi - Mathematics" loading="lazy"><div class="person-info"><h3>Mr. Mwangangi</h3><p>Mathematics & Biology</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="student-life" id="student-life">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Beyond the classroom</div>
+          <h2 class="section-title">Student Life & Co-Curricular Activities</h2>
+          <p>Learning continues through teamwork, creativity, competition, service and discovery.</p>
+        </div>
+        <div class="activity-grid">
+          <article class="activity-card"><h3>Football</h3><p>Building teamwork, discipline, fitness and competitive spirit.</p></article>
+          <article class="activity-card"><h3>Volleyball</h3><p>Developing coordination, teamwork and sportsmanship through competition.</p></article>
+          <article class="activity-card"><h3>Basketball</h3><p>Growing confidence, leadership and resilience through sport.</p></article>
+          <article class="activity-card"><h3>Chess Club</h3><p>Strengthening strategy, concentration and logical problem-solving.</p></article>
+          <article class="activity-card"><h3>Drama Club</h3><p>Nurturing creativity, confidence and public speaking skills.</p></article>
+          <article class="activity-card"><h3>Music & Choir</h3><p>Celebrating talent through singing, instruments and cultural performance.</p></article>
+          <article class="activity-card"><h3>ICT Club</h3><p>Exploring computers, coding, robotics and digital innovation.</p></article>
+          <article class="activity-card"><h3>Environmental Club</h3><p>Promoting tree planting, recycling and environmental conservation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Life at Kavingoni</div>
+          <h2 class="section-title">School Gallery</h2>
+          <p>A glimpse into the places, activities and experiences that make our school community special.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\2025-targets-barner.png" alt="School entrance" loading="lazy"><figcaption>Entrance</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\emperiums-poster.png" alt="candidates class 2026 awards" loading="lazy"><figcaption>The Imperiums Awards Scheme </figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\subject-targets.png" alt="Subjects Targets" loading="lazy"><figcaption>Subjects Targets 2026</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\computer-lab.jpeg" alt="Computer laboratory" loading="lazy"><figcaption>Digital Learning Area</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Desktop\GITHUB PROJECTS\KAVINGONI WEBSITE\School photos\laun-national-games.png" alt="Students participating in sports" loading="lazy"><figcaption>Sports</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\harambee.jpeg" alt="School event" loading="lazy"><figcaption>School Bus Harambee</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\kcse-analysis.png" alt="KCSE analysis 2025" loading="lazy"><figcaption>KCSE analysis 2025</figcaption></figure>
+          <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\alumni.jpeg" alt="Alumni" loading="lazy"><figcaption>Alumni</figcaption></figure>
+		  <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 17.22.44 (2).jpeg" alt="Camara AI Training" loading="lazy"><figcaption>Camara AI Training</figcaption></figure>
+		  <figure class="gallery-card"><img src="C:\Users\Kavingoni Sec\OneDrive\Pictures\ict website photos\WhatsApp Image 2026-07-29 at 17.22.44.jpeg" alt="AI TRAINING FOR JSS TEACHERS " loading="lazy"><figcaption>AI TRAINING FOR JSS TEACHERS </figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-kicker">Get in touch</div>
+          <h2 class="section-title">We Would Love to Hear From You</h2>
+          <p class="lead">For admissions, school information or general enquiries, please use the contact details below or send us a message.</p>
+          <div class="contact-list">
+            <div class="contact-item"><div><b>Phone</b><span>+254 736975416</span></div></div>
+            <div class="contact-item"><div><b>Email</b><span>skavingoni@gmail.com</span></div></div>
+            <div class="contact-item"><div><b>Location</b><span>Kavingoni, Makueni County, Kenya</span></div></div>
+          </div>
+        </div>
+
+        <form id="contactForm">
+          <div class="form-row">
+            <div class="field"><label for="name">Your Name</label><input id="name" name="name" type="text" placeholder="Enter your name" required></div>
+            <div class="field"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="Enter your email" required></div>
+          </div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="6" placeholder="How can we help you?" required></textarea></div>
+          <button class="btn" type="submit">Send Message</button>
+          <p id="formStatus" aria-live="polite" style="margin-top:12px;color:#0b3d91;font-size:.88rem;"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="location">
+      <div class="container location-grid">
+        <div>
+          <div class="section-kicker">Visit us</div>
+          <h2 class="section-title">Find St. Thomas Kavingoni</h2>
+          <p class="lead">We are located in Kavingoni market,Kathonzweni Subcounty, Makueni County, Kenya.</p>
+          <br>
+          <p class="lead" style="margin-top:20px;"><strong>Location:</strong> Kavingoni, Makueni County, Kenya</p>
+        </div>
+        <div class="map-wrap">
+          <div class="live-map-card">
+            <iframe
+              src="https://www.google.com/maps?q=St.%20Thomas%20Kavingoni%20Senior%20School,%20Kavingoni,%20Kathonzweni,%20Makueni,%20Kenya&output=embed"
+              title="Live Google Maps location of St. Thomas Kavingoni Senior School"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-caption">
+              <div>
+                <h3>📍 Our Location</h3>
+                <p>St. Thomas Kavingoni Senior School<br>Kavingoni, Kathonzweni Subcounty, Makueni County, Kenya</p>
+              </div>
+              <a class="map-button" href="https://maps.app.goo.gl/2c5J4DAuwS2bv7dA7" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>St. Thomas Kavingoni Senior School</h3>
+          <p>Providing quality education through academic excellence, discipline, innovation and strong moral values.</p>
+          <p style="margin-top:12px;"><strong>EDUCATION FOR A BETTER LIFE</strong></p>
+        </div>
+        <div>
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#academics">Academics</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#contact">Admissions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>Phone: +254 736975416</p>
+          <p>Email: skavingoni@gmail.com</p>
+          <p>Kavingoni, Kathonzweni Subcounty, Makueni County, Kenya</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 St. Thomas Kavingoni School. All Rights Reserved.</span>
+        <span>Designed & Developed by <strong>ICT CLUB</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="back-top" href="#top" aria-label="Back to top">↑</a>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const backTop = document.querySelector(".back-top");
+    const form = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    document.querySelectorAll(".nav-links > li > a").forEach(link => {
+      link.addEventListener("click", event => {
+        const parent = link.parentElement;
+        const dropdown = parent.querySelector(".dropdown-menu");
+
+        if (window.innerWidth <= 850 && dropdown) {
+          event.preventDefault();
+          parent.classList.toggle("open");
+          return;
+        }
+
+        navLinks.classList.remove("open");
+        document.querySelectorAll(".has-dropdown").forEach(item => item.classList.remove("open"));
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.querySelectorAll(".dropdown-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        document.querySelectorAll(".has-dropdown").forEach(item => item.classList.remove("open"));
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    window.addEventListener("scroll", () => {
+      backTop.classList.toggle("show", window.scrollY > 500);
+    });
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+      formStatus.textContent = "Thank you! Your message has been captured. Connect this form to a backend or email service for live submissions.";
+      form.reset();
+    });
+
+    const sections = document.querySelectorAll("main section[id]");
+    const links = document.querySelectorAll(".nav-links a:not(.nav-cta)");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id));
+        }
+      });
+    }, { rootMargin: "-35% 0px -55% 0px" });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
